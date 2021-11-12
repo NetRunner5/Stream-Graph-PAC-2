@@ -18,6 +18,12 @@ data <- babynames %>%
         filter(name %in% c("Ashley", "Amanda", "Jessica",    "Patricia", "Linda", "Deborah",   "Dorothy", "Betty", "Helen")) %>%
         filter(sex=="F")
 
+head(data, 10)
+```
+
+
+
+```{r, message= FALSE, warning=FALSE}
 # Plot
 data %>% 
   streamgraph(key="name", value="n", date="year") %>%
