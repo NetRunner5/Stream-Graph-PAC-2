@@ -1,0 +1,28 @@
+---
+title: "Stream Graph"
+author: "jzhu0"
+date: "12/11/2021"
+output: html_document
+---
+
+```{r, message= FALSE, warning=FALSE}
+# Libs
+library('devtools')
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+if (!require('streamgraph')) install.packages('streamgraph'); library('streamgraph')
+if (!require('babynames')) install.packages('babynames'); library('babynames')
+
+
+# Dataset
+data <- babynames %>%
+        filter(name %in% c("Ashley", "Amanda", "Jessica",    "Patricia", "Linda", "Deborah",   "Dorothy", "Betty", "Helen")) %>%
+        filter(sex=="F")
+
+# Plot
+data %>% 
+  streamgraph(key="name", value="n", date="year") %>%
+  sg_fill_brewer("Spectral") %>%
+  sg_legend(show=TRUE, label="Name: ") %>%
+  sg_title( title = "Female babynames between 1880 to 2017")
+
+```
